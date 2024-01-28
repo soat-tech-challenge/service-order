@@ -16,10 +16,10 @@ import java.util.List;
 public class Order extends Entity {
 
     private Double totalPrice;
-    private Long clientId;
+    private String clientId;
     private List<OrderItem> items = new ArrayList<>();
 
-    public Order(Long id, boolean deleted, Double totalPrice, Long clientId, List<OrderItem> items) {
+    public Order(Long id, boolean deleted, Double totalPrice, String clientId, List<OrderItem> items) {
         super(id, deleted);
         this.totalPrice = totalPrice;
         this.clientId = clientId;

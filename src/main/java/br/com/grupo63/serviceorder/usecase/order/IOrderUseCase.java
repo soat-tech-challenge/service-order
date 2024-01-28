@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IOrderUseCase {
 
-    Order create(Order entity, Long clientId) throws ValidationException, NotFoundException;
+    Order create(Order entity, String clientId) throws ValidationException, NotFoundException;
 
     Order read(Long id) throws NotFoundException;
 

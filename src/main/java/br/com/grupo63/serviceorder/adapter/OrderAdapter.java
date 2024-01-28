@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class OrderAdapter {
 
-    public static void fillEntity(CreateOrderRequestDTO dto, Long clientId, Order order) {
+    public static void fillEntity(CreateOrderRequestDTO dto, String clientId, Order order) {
         OrderControllerDTO orderDTO = new OrderControllerDTO();
         orderDTO.setClientId(clientId);
 
