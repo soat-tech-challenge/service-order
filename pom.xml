@@ -161,6 +161,21 @@
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>0.8.11</version>
+						<configuration>
+							<excludes>
+								<exclude>**/br/com/grupo63/serviceorder/controller/dto/ProductControllerDTO.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/controller/dto/OrderItemControllerDTO.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/controller/dto/OrderControllerDTO.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/api/controller/order/dto/CreateOrderRequestDTO.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/gateway/identification/dto/ClientDTO.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/config/JwtFilterConfig.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/config/JPAConfigurer.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/config/JwtService.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/config/JwtFilter.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/config/ValidationConfig.class</exclude>
+								<exclude>**/br/com/grupo63/serviceorder/ServiceOrderApplication.class</exclude>
+							</excludes>
+						</configuration>
 						<executions>
 							<execution>
 								<id>prepare-agent</id>
