@@ -40,7 +40,7 @@ public class ProductAPIController extends AbstractAPIController {
             description = "Cria um produto com nome, preço, estoque inicial e categoria. Possíveis categorias (IDs): " +
                     "1 - Lanche, 2 - Acompanhamento, 3 - Bebida, 4 - Sobremesa")
     @PostMapping
-    public ResponseEntity<ProductControllerDTO> create(@Valid @RequestBody ProductControllerDTO dto) throws ValidationException {
+    public ResponseEntity<ProductControllerDTO> create(@Valid @RequestBody ProductControllerDTO dto) {
         return ResponseEntity.ok(controller.create(dto));
     }
 

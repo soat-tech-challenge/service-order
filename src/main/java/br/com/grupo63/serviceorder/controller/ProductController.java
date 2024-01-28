@@ -20,7 +20,7 @@ public class ProductController {
     private final ProductUseCase useCase;
     private final IProductGateway gateway;
 
-    public ProductControllerDTO create(ProductControllerDTO productControllerDTO) throws ValidationException {
+    public ProductControllerDTO create(ProductControllerDTO productControllerDTO) {
         Product product = new Product();
         ProductAdapter.fillEntity(productControllerDTO, product);
         product = useCase.create(product, gateway);
@@ -35,7 +35,7 @@ public class ProductController {
         return useCase.list(gateway).stream().map(ProductPresenter::toDto).toList();
     }
 
-    public ProductControllerDTO update(ProductControllerDTO productControllerDTO, Long id) throws ValidationException, NotFoundException {
+    public ProductControllerDTO update(ProductControllerDTO productControllerDTO, Long id) throws NotFoundException {
         Product entity = useCase.read(id, gateway);
         ProductAdapter.fillEntity(productControllerDTO, entity);
         entity = useCase.update(entity, gateway);
