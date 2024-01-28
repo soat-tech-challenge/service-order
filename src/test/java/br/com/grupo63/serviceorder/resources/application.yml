@@ -4,10 +4,6 @@ springdoc:
   api-docs:
     enabled: false
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
   main:
     banner-mode: off
   output:
