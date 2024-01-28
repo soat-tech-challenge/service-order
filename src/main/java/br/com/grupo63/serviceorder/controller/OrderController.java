@@ -34,7 +34,7 @@ public class OrderController {
         return orderUseCase.list().stream().map(OrderPresenter::toDto).toList();
     }
 
-    public OrderControllerDTO update(OrderControllerDTO dto, Long orderId) throws ValidationException, NotFoundException {
+    public OrderControllerDTO update(OrderControllerDTO dto, Long orderId) throws NotFoundException {
         Order entity = orderUseCase.read(orderId);
         OrderAdapter.fillEntity(dto, entity);
         entity = orderUseCase.update(entity);
