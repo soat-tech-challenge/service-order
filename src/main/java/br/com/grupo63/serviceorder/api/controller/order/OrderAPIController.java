@@ -42,7 +42,8 @@ public class OrderAPIController extends AbstractAPIController {
     @Operation(
             tags = {"3ª chamada - Fluxo principal - Pagamento", "5ª chamada - Fluxo principal - Acompanhamento e entrega"},
             summary = "Recupera pedido",
-            description = "Exibe os dados de um pedido a partir de seu id")
+            description = "Exibe os dados de um pedido a partir de seu id",
+            security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping("/{id}")
     public ResponseEntity<OrderControllerDTO> read(@PathVariable("id") Long id) throws NotFoundException {
         return ResponseEntity.ok(controller.read(id));
@@ -50,7 +51,8 @@ public class OrderAPIController extends AbstractAPIController {
 
     @Operation(
             summary = "Listar pedidos",
-            description = "Lista todos os pedidos")
+            description = "Lista todos os pedidos",
+            security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping
     public ResponseEntity<List<OrderControllerDTO>> list() {
         return ResponseEntity.ok(controller.list());
@@ -58,7 +60,8 @@ public class OrderAPIController extends AbstractAPIController {
 
     @Operation(
             summary = "Excluir pedido",
-            description = "Exclui um pedido por id")
+            description = "Exclui um pedido por id",
+            security = @SecurityRequirement(name = "bearerAuth"))
     @DeleteMapping("/{id}")
     public ResponseEntity<DefaultResponseDTO> delete(@PathVariable("id") Long id) throws NotFoundException {
         controller.delete(id);

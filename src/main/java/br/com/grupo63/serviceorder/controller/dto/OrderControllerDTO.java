@@ -18,6 +18,5 @@ public class OrderControllerDTO extends AbstractControllerDTO {
     private Double totalPrice;
     private Long clientId;
     private List<OrderItemControllerDTO> items = new ArrayList<>();
-    private Long paymentId;
 
 }

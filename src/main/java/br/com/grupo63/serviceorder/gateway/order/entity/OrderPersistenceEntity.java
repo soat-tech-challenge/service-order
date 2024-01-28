@@ -31,10 +31,6 @@ public class OrderPersistenceEntity extends PersistenceEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderItemPersistenceEntity> items = new ArrayList<>();
 
-    @Basic
-    @Column(name = "ord_payment", nullable = false)
-    private Long paymentId;
-
     public OrderPersistenceEntity(Long id) {
         this.id = id;
     }
@@ -43,7 +39,6 @@ public class OrderPersistenceEntity extends PersistenceEntity {
         super(order);
         this.totalPrice = order.getTotalPrice();
         this.clientId = order.getClientId();
-        this.paymentId = order.getPaymentId();
         this.items = order.getItems().stream().map(item -> new OrderItemPersistenceEntity(item, this)).toList();
     }
 
@@ -53,8 +48,7 @@ public class OrderPersistenceEntity extends PersistenceEntity {
                 this.isDeleted(),
                 this.getTotalPrice(),
                 this.getClientId(),
-                this.getItems().stream().map(OrderItemPersistenceEntity::toModel).toList(),
-                this.getPaymentId());
+                this.getItems().stream().map(OrderItemPersistenceEntity::toModel).toList());
     }
 
 }

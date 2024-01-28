@@ -18,14 +18,12 @@ public class Order extends Entity {
     private Double totalPrice;
     private Long clientId;
     private List<OrderItem> items = new ArrayList<>();
-    private Long paymentId;
 
-    public Order(Long id, boolean deleted, Double totalPrice, Long clientId, List<OrderItem> items, Long paymentId) {
+    public Order(Long id, boolean deleted, Double totalPrice, Long clientId, List<OrderItem> items) {
         super(id, deleted);
         this.totalPrice = totalPrice;
         this.clientId = clientId;
         this.items = items;
-        this.paymentId = paymentId;
     }
 
     public OrderItem getByProductId(Long id) {

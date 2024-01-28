@@ -38,7 +38,6 @@ public class OrderAdapter {
         }).toList());
 
         entity.setClientId(dto.getClientId());
-        entity.setPaymentId(dto.getPaymentId());
     }
 
 }

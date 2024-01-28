@@ -11,7 +11,6 @@ public class OrderPresenter {
 
         dto.setId(entity.getId());
         dto.setTotalPrice(entity.getTotalPrice());
-        dto.setPaymentId(entity.getPaymentId());
         dto.setClientId(entity.getClientId());
         dto.setItems(entity.getItems().stream().map(orderItemEntity -> {
             OrderItemControllerDTO orderItemUseCaseDTO = new OrderItemControllerDTO();
