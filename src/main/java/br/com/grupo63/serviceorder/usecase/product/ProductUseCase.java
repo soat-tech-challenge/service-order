@@ -23,7 +23,7 @@ public class ProductUseCase implements IProductUseCase {
     }
 
     @Override
-    public Product read(Long id, IProductGateway gateway) throws NotFoundException {or a street fighter player
+    public Product read(Long id, IProductGateway gateway) throws NotFoundException {
         return gateway.findByIdAndDeletedFalse(id).orElseThrow(NotFoundException::new);
     }
 
