@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(name = "identification", url = "/clients")
+@FeignClient(name = "identification", url = "/identification/clients")
 public interface IIdentificationGateway {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
