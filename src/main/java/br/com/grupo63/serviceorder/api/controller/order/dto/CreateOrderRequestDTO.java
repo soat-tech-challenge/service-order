@@ -15,6 +15,7 @@ public class CreateOrderRequestDTO {
 
     @Setter
     @Getter
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class Item {
         private Long id;
