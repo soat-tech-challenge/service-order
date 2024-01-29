@@ -11,7 +11,7 @@ import java.util.Optional;
 @FeignClient(name = "identification", url = "${app.api-url.identification}")
 public interface IIdentificationGateway {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/identification/clients/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/clients/{id}")
     Optional<ClientDTO> getById(@PathVariable("id") String id);
 
 }
