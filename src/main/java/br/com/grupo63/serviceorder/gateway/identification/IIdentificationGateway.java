@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Optional;
 
-@FeignClient(name = "identification", url = "/identification/clients")
+@FeignClient(name = "identification", url = "${urls.baseurl-identification}")
 public interface IIdentificationGateway {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    Optional<ClientDTO> getById(@PathVariable("id") Long orderId);
+    @RequestMapping(method = RequestMethod.GET, value = "/identification/clients/{id}")
+    Optional<ClientDTO> getById(@PathVariable("id") String id);
 
 }

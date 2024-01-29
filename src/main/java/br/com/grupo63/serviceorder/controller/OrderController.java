@@ -19,7 +19,7 @@ public class OrderController {
 
     private final OrderUseCase orderUseCase;
 
-    public OrderControllerDTO create(Long clientId, CreateOrderRequestDTO dto) throws ValidationException, NotFoundException {
+    public OrderControllerDTO create(String clientId, CreateOrderRequestDTO dto) throws ValidationException, NotFoundException {
         Order entity = new Order();
         OrderAdapter.fillEntity(dto, clientId, entity);
         entity = orderUseCase.create(entity, clientId);

@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderControllerDTO extends AbstractControllerDTO {
 
     private Double totalPrice;
-    private Long clientId;
+    private String clientId;
     private List<OrderItemControllerDTO> items = new ArrayList<>();
 
 }

@@ -26,7 +26,7 @@ public class OrderPersistenceEntity extends PersistenceEntity {
 
     @Basic
     @Column(name = "ord_client", nullable = false)
-    private Long clientId;
+    private String clientId;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
     private List<OrderItemPersistenceEntity> items = new ArrayList<>();

@@ -55,7 +55,7 @@ public class OrderIntegrationTest {
     private final Category defaultCategory = new Category(1L, false, "category");
     private final Product defaultProduct = new Product(1L, false, "product", 10.0, defaultCategory);
     private final CreateOrderRequestDTO.Item defaultItem = new CreateOrderRequestDTO.Item(1L, 1L);
-    private final Order defaultOrder = new Order(1L, false, 10.0, 1L, List.of());
+    private final Order defaultOrder = new Order(1L, false, 10.0, "hash", List.of());
 
     private final OrderPersistenceEntity defaultOrderPersistenceEntity =
             new OrderPersistenceEntity(defaultOrder);
@@ -96,9 +96,9 @@ public class OrderIntegrationTest {
     @Test
     void testCreate_EndToEnd() {
         HttpServletRequest mockedRequest = new MockHttpServletRequest();
-        mockedRequest.setAttribute("clientId", Long.toString(1L));
+        mockedRequest.setAttribute("clientId", "hash");
 
-        when(identificationGateway.getById(1L)).thenReturn(Optional.of(defaultClientDTO));
+        when(identificationGateway.getById("hash")).thenReturn(Optional.of(defaultClientDTO));
         when(productJpaRepository.findByIdAndDeletedFalse(1L)).thenReturn(Optional.of(defaultProductPersistenceEntity));
         when(orderJpaRepository.saveAndFlush(any())).thenReturn(defaultOrderPersistenceEntity);
 

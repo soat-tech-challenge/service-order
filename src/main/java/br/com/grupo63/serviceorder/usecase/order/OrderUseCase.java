@@ -36,7 +36,7 @@ public class OrderUseCase implements IOrderUseCase {
     }
 
     @Override
-    public Order create(Order entity, Long clientId) throws NotFoundException {
+    public Order create(Order entity, String clientId) throws NotFoundException {
         identificationGateway.getById(clientId).orElseThrow(NotFoundException::new);
 
         fillCurrentPrices(entity);

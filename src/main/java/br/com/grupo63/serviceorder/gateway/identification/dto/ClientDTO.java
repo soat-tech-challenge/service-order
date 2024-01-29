@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ClientDTO {
 
-    Long id;
+    String id;
 
 }

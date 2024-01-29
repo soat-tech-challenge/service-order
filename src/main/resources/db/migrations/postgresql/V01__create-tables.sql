@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS ord_order (
     id               BIGSERIAL PRIMARY KEY,
     deleted          BOOLEAN NOT NULL,
     total_price      DOUBLE PRECISION NOT NULL,
-    ord_client       BIGINT NOT NULL,
+    ord_client       VARCHAR(255) NOT NULL,
     creation_date    TIMESTAMP(6) NOT NULL,
     last_update_date TIMESTAMP(6) NOT NULL
 );
