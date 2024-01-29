@@ -26,6 +26,5 @@ jwt:
 # --- Custom keys ---
 
 app:
-  docs-api-url: "${DOCS_API_URL:(no value)}"
   api-url:
     identification: "${API_URL_IDENTIFICATION:http://localhost:8001}"
