@@ -14,10 +14,6 @@ spring:
   flyway:
     locations: classpath:db/migrations/{vendor}/
     enabled: true
-jwt:
-  token:
-    key:
-      public: "${JWT_PUBLIC_KEY}"
 
 springdoc:
   swagger-ui:
@@ -54,3 +50,8 @@ info:
   name: "@project.name@"
   description: "@project.description@"
   version: "@project.version@"
+
+jwt:
+  token:
+    key:
+      public: "${JWT_PUBLIC_KEY}"
