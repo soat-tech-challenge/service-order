@@ -38,12 +38,17 @@ management:
       exposure:
         include: health, info, metrics, shutdown
 
+server:
+  servlet:
+    context-path: "/order"
+  port: 8002
+
 # --- Custom keys ---
 
 app:
   docs-api-url: "${DOCS_API_URL:(no value)}"
   api-url:
-    identification: ${API_URL_IDENTIFICATION}
+    identification: "${API_URL_IDENTIFICATION}"
 
 info:
   name: "@project.name@"
