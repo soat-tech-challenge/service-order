@@ -17,6 +17,7 @@ import br.com.grupo63.serviceorder.gateway.product.ProductJpaAdapter;
 import br.com.grupo63.serviceorder.gateway.product.ProductJpaRepository;
 import br.com.grupo63.serviceorder.gateway.product.entity.ProductPersistenceEntity;
 import br.com.grupo63.serviceorder.usecase.order.OrderUseCase;
+import br.com.grupo63.techchallenge.common.api.controller.dto.DefaultResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,8 +31,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -54,14 +54,12 @@ public class OrderIntegrationTest {
 
     private final Category defaultCategory = new Category(1L, false, "category");
     private final Product defaultProduct = new Product(1L, false, "product", 10.0, defaultCategory);
-    private final CreateOrderRequestDTO.Item defaultItem = new CreateOrderRequestDTO.Item(1L, 1L);
-    private final Order defaultOrder = new Order(1L, false, 10.0, "hash", List.of());
+    private final OrderItem orderItem = new OrderItem(1L, false, 1L, 10.0, null, defaultProduct);
+    private final Order defaultOrder = new Order(1L, false, 10.0, "hash", List.of(orderItem));
 
-    private final OrderPersistenceEntity defaultOrderPersistenceEntity =
-            new OrderPersistenceEntity(defaultOrder);
+    private final OrderPersistenceEntity defaultOrderPersistenceEntity = new OrderPersistenceEntity(defaultOrder);
     private final ProductPersistenceEntity defaultProductPersistenceEntity = new ProductPersistenceEntity(defaultProduct);
 
-    private final CreateOrderRequestDTO defaultCreateOrderRequestDTO = new CreateOrderRequestDTO(List.of(defaultItem));
     private final ClientDTO defaultClientDTO = new ClientDTO();
 
     @BeforeEach
@@ -102,10 +100,33 @@ public class OrderIntegrationTest {
         when(productJpaRepository.findByIdAndDeletedFalse(1L)).thenReturn(Optional.of(defaultProductPersistenceEntity));
         when(orderJpaRepository.saveAndFlush(any())).thenReturn(defaultOrderPersistenceEntity);
 
-        ResponseEntity<OrderControllerDTO> response = orderAPIController.create(defaultCreateOrderRequestDTO, mockedRequest);
+        CreateOrderRequestDTO.Item item = new CreateOrderRequestDTO.Item();
+        item.setId(1L);
+        item.setQuantity(1L);
+
+        CreateOrderRequestDTO.Item secondItem = new CreateOrderRequestDTO.Item(1L, 1L);
+
+        CreateOrderRequestDTO createOrderRequestDTO = new CreateOrderRequestDTO(List.of(item, secondItem));
+
+        ResponseEntity<OrderControllerDTO> response = orderAPIController.create(createOrderRequestDTO, mockedRequest);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(response.getBody().getId(), 1L);
+        verify(orderJpaRepository, times(1)).saveAndFlush(any());
+    }
+
+    @SneakyThrows
+    @Test
+    public void testDelete_EndToEnd() {
+        when(orderJpaRepository.findByIdAndDeletedFalse(defaultOrderPersistenceEntity.getId())).thenReturn(Optional.of(defaultOrderPersistenceEntity));
+        when(orderJpaRepository.saveAndFlush(any())).thenReturn(new OrderPersistenceEntity(defaultOrderPersistenceEntity.getTotalPrice(), defaultOrderPersistenceEntity.getClientId(),
+                defaultOrderPersistenceEntity.getItems()));
+
+        ResponseEntity<DefaultResponseDTO> response = orderAPIController.delete(defaultOrderPersistenceEntity.getId());
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNull(response.getBody());
+        verify(orderJpaRepository, times(1)).findByIdAndDeletedFalse(any());
         verify(orderJpaRepository, times(1)).saveAndFlush(any());
     }
 
