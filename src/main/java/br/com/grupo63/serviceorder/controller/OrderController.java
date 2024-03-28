@@ -6,6 +6,7 @@ import br.com.grupo63.serviceorder.controller.dto.OrderControllerDTO;
 import br.com.grupo63.serviceorder.entity.order.Order;
 import br.com.grupo63.serviceorder.presenter.OrderPresenter;
 import br.com.grupo63.serviceorder.usecase.order.OrderUseCase;
+import br.com.grupo63.techchallenge.common.api.controller.AbstractAPIController;
 import br.com.grupo63.techchallenge.common.exception.NotFoundException;
 import br.com.grupo63.techchallenge.common.exception.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class OrderController {
+public class OrderController extends AbstractAPIController {
 
     private final OrderUseCase orderUseCase;
 
