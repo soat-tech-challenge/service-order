@@ -1,5 +1,7 @@
 package br.com.grupo63.serviceorder;
 
+import br.com.grupo63.techchallenge.common.config.auth.jwt.JwtService;
+import br.com.grupo63.techchallenge.common.config.aws.ecs.ECSTaskIdInfoContributor;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -9,7 +11,6 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.ComponentScan;
 
 @OpenAPIDefinition(
 		info = @Info(title = "${info.name}", description = "${info.description}", version = "${info.version}"),
@@ -25,9 +26,12 @@ import org.springframework.context.annotation.ComponentScan;
 		bearerFormat = "JWT",
 		in = SecuritySchemeIn.HEADER
 )
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = {
+		ServiceOrderApplication.class,
+		JwtService.class,
+		ECSTaskIdInfoContributor.class
+})
 @EnableFeignClients
-@ComponentScan(basePackages = {"br.com.grupo63"})
 public class ServiceOrderApplication {
 
 	public static void main(String[] args) {
