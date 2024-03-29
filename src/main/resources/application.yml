@@ -1,4 +1,8 @@
 # Global config
+logging:
+  level:
+    br.com.grupo63: "${LOGGING_LEVEL:info}"
+
 spring:
   docker:
     compose:
@@ -14,10 +18,6 @@ spring:
   flyway:
     locations: classpath:db/migrations/{vendor}/
     enabled: true
-jwt:
-  token:
-    key:
-      public: "${JWT_PUBLIC_KEY}"
 
 springdoc:
   swagger-ui:
@@ -38,6 +38,7 @@ management:
       exposure:
         include: health, info, metrics, shutdown
 
+
 server:
   servlet:
     context-path: "/order"
@@ -46,6 +47,8 @@ server:
 # --- Custom keys ---
 
 app:
+  auth:
+    jwt_public_key: "${JWT_PUBLIC_KEY}"
   docs-api-url: "${DOCS_API_URL:(no value)}"
   api-url:
     identification: "${API_URL_IDENTIFICATION}"
@@ -54,3 +57,4 @@ info:
   name: "@project.name@"
   description: "@project.description@"
   version: "@project.version@"
+

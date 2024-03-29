@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 
 @OpenAPIDefinition(
 		info = @Info(title = "${info.name}", description = "${info.description}", version = "${info.version}"),
@@ -26,6 +27,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 )
 @SpringBootApplication
 @EnableFeignClients
+@ComponentScan(basePackages = {"br.com.grupo63"})
 public class ServiceOrderApplication {
 
 	public static void main(String[] args) {
